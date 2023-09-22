@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__) # __name__ is special variable that is the name of the module, here we are creating an instance of Flask
-
+app.config['SECRET_KEY'] = '64ea27adbc7886d1b6fb9a41c8c59825'
 posts = [
     {
         'author': 'Reggy',
@@ -23,6 +24,17 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.html", title='About')
+
+@app.route("/register")
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title='Register', form=form)
+
+@app.route("/login") 
+def login():
+    form = LoginForm()
+    return render_template("login.html", title='login', form=form)
+    
 if __name__ == "__main__":
     app.run(debug=True) # Helps your site's changes to take effect, even without stopping and running the application again
-    
+
