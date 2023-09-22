@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__) # __name__ is special variable that is the name of the module, here we are creating an instance of Flask
 
 posts = [
